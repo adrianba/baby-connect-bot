@@ -2,6 +2,11 @@ require('dotenv-extended').load();
 var restify = require('restify');
 var builder = require('botbuilder');
 
+// Load from CONFIG_ prefixed env variables first (for Azure deployment) otherwise from .env
+const MICROSOFT_APP_ID = process.env.CONFIG_MICROSOFT_APP_ID || process.env.MICROSOFT_APP_ID;
+const MICROSOFT_APP_PASSWORD = process.env.CONFIG_MICROSOFT_APP_PASSWORD || process.env.MICROSOFT_APP_PASSWORD;
+const LUIS_MODEL_URL = process.env.CONFIG_LUIS_MODEL_URL || process.env.LUIS_MODEL_URL;
+
 // Setup Restify Server
 var server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, function () {
@@ -10,8 +15,8 @@ server.listen(process.env.port || process.env.PORT || 3978, function () {
 
 // Create chat connector for communicating with the Bot Framework Service
 var connector = new builder.ChatConnector({
-    appId: process.env.MICROSOFT_APP_ID,
-    appPassword: process.env.MICROSOFT_APP_PASSWORD
+    appId: MICROSOFT_APP_ID,
+    appPassword: MICROSOFT_APP_PASSWORD
 });
 
 // Listen for messages from users 
@@ -23,7 +28,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
 });
 
 // Attach LUIS model
-var recognizer = new builder.LuisRecognizer(process.env.LUIS_MODEL_URL);
+var recognizer = new builder.LuisRecognizer(LUIS_MODEL_URL);
 bot.recognizer(recognizer);
 
 bot.dialog('SleepStatus', function (session,args) {
