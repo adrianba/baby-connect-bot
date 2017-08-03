@@ -1,0 +1,39 @@
+{
+  "luis_schema_version": "2.1.0",
+  "versionId": "0.1",
+  "name": "Baby Connect",
+  "desc": "",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "None"
+    },
+    {
+      "name": "SleepStatus"
+    }
+  ],
+  "entities": [
+    {
+      "name": "ChildName"
+    }
+  ],
+  "composites": [],
+  "closedLists": [],
+  "bing_entities": [],
+  "actions": [],
+  "model_features": [],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "how long has bob been asleep",
+      "intent": "SleepStatus",
+      "entities": [
+        {
+          "entity": "ChildName",
+          "startPos": 13,
+          "endPos": 15
+        }
+      ]
+    }
+  ]
+}

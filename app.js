@@ -17,7 +17,21 @@ var connector = new builder.ChatConnector({
 // Listen for messages from users 
 server.post('/api/messages', connector.listen());
 
-// Receive messages from the user and respond by echoing each message back (prefixed with 'You said:')
+// Respond to unknown messages
 var bot = new builder.UniversalBot(connector, function (session) {
-    session.send("You said: %s", session.message.text);
+    session.send("Sorry, I didn't understand what you said: %s.",session.message.text);
+});
+
+// Attach LUIS model
+var recognizer = new builder.LuisRecognizer(process.env.LUIS_MODEL_URL);
+bot.recognizer(recognizer);
+
+bot.dialog('SleepStatus', function (session,args) {
+    console.log(JSON.stringify(args,2));
+
+
+
+    session.endDialog("Hi - I wish I could tell you about sleep status!");
+}).triggerAction({
+    matches:'SleepStatus'
 });
