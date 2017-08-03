@@ -1,17 +1,26 @@
 {
   "name": "baby-connect-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Baby Connect Bot using Microsoft Bot Framework",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrianba/baby-connect-bot.git"
+  },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Ade Bateman (https://adebateman.org/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adrianba/baby-connect-bot/issues"
+  },
+  "homepage": "https://github.com/adrianba/baby-connect-bot#readme",
   "dependencies": {
-    "botbuilder": "^3.8.4",
+    "baby-connect-api": "git+https://git@github.com/adrianba/baby-connect-api.git",
+    "botbuilder": "^3.9.0",
     "dotenv-extended": "^2.0.1",
-    "restify": "^5.0.0"
+    "restify": "^5.0.1"
   }
 }
